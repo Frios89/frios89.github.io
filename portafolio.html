@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Felipe Ríos · Portafolio</title>
+<meta name="description" content="Portafolio de Felipe Ríos: automatización de auditoría con Python, Power Query y Power BI.">
+<meta property="og:title" content="Felipe Ríos · Portafolio">
+<meta property="og:description" content="Automatización de auditoría con Python, Power Query y Power BI.">
+<meta name="theme-color" content="#0f1a2b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1a2b'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' fill='%23c9a96e' text-anchor='middle'%3EFR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1a2b;
+    --bg-2: #13223a;
+    --card: rgba(255,255,255,0.04);
+    --card-hover: rgba(255,255,255,0.07);
+    --line: rgba(255,255,255,0.10);
+    --text: #eef1f6;
+    --muted: #9aa7bb;
+    --accent: #c9a96e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  /* Navegación */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(15,26,43,0.85); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+  .brand { font-family: "Fraunces", Georgia, serif; font-size: 18px; text-decoration: none; white-space: nowrap; }
+  .brand b { color: var(--accent); font-weight: 500; }
+  nav { display: flex; gap: 22px; }
+  nav a { text-decoration: none; color: var(--muted); font-size: 14px; transition: color .2s; }
+  nav a:hover { color: var(--text); }
+  @media (max-width: 640px) { nav { display: none; } }
+
+  /* Portada */
+  .hero {
+    padding: 96px 0 80px;
+    background: radial-gradient(900px 500px at 20% 0%, var(--bg-2), transparent 70%);
+  }
+  .eyebrow { color: var(--accent); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+  .hero h1 {
+    margin-top: 14px; max-width: 720px;
+    font-family: "Fraunces", Georgia, serif; font-weight: 500;
+    font-size: clamp(32px, 6vw, 54px); line-height: 1.15;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p { margin-top: 18px; max-width: 600px; color: var(--muted); font-size: 17px; }
+  .btns { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; border-radius: 10px; text-decoration: none;
+    font-weight: 600; font-size: 15px; transition: transform .2s, background .2s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: #1a1408; }
+  .btn-ghost { border: 1px solid var(--line); color: var(--text); }
+  .btn-ghost:hover { background: var(--card-hover); }
+
+  /* Secciones */
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  h2 { font-family: "Fraunces", Georgia, serif; font-weight: 500; font-size: clamp(26px, 4vw, 34px); margin-top: 8px; }
+  .lead { margin-top: 12px; color: var(--muted); max-width: 640px; }
+
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .about p + p { margin-top: 14px; }
+  .about .txt { color: var(--muted); }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .stat b { display: block; font-family: "Fraunces", Georgia, serif; font-weight: 500; font-size: 30px; color: var(--accent); }
+  .stat span { color: var(--muted); font-size: 14px; }
+  @media (max-width: 760px) { .about { grid-template-columns: 1fr; gap: 32px; } }
+
+  .grid { margin-top: 36px; display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 24px; display: flex; flex-direction: column;
+    transition: background .2s, border-color .2s;
+  }
+  .card:hover { background: var(--card-hover); border-color: rgba(201,169,110,0.45); }
+  .card .icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    display: grid; place-items: center;
+    background: rgba(201,169,110,0.12);
+  }
+  .card .icon svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .card h3 { margin-top: 16px; font-size: 17px; font-weight: 600; line-height: 1.35; }
+  .card p { margin-top: 8px; color: var(--muted); font-size: 14.5px; flex: 1; }
+  .chips { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips span { font-size: 12px; color: var(--accent); border: 1px solid rgba(201,169,110,0.35); border-radius: 999px; padding: 3px 10px; }
+
+  .skills { margin-top: 36px; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
+  .skill { border-left: 2px solid var(--accent); padding: 4px 0 4px 18px; }
+  .skill h3 { font-size: 16px; font-weight: 600; }
+  .skill p { margin-top: 6px; color: var(--muted); font-size: 14.5px; }
+
+  .contact { text-align: center; }
+  .contact .lead { margin-left: auto; margin-right: auto; }
+  .contact .btns { justify-content: center; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 13px; text-align: center; }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#inicio">Felipe <b>Ríos</b></a>
+    <nav>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#que-hago">Qué hago</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="inicio">
+  <div class="wrap">
+    <div class="eyebrow">Analista de datos y desarrollador</div>
+    <h1>Convierto procesos manuales de auditoría en <em>herramientas que se ejecutan solas</em>.</h1>
+    <p>Desarrollo motores en Python, Power Query y Power BI que cruzan fuentes contables, detectan diferencias y generan papeles de trabajo listos para revisar.</p>
+    <div class="btns">
+      <a class="btn btn-primary" href="#proyectos">Ver proyectos</a>
+      <a class="btn btn-ghost" href="https://wa.me/573006655337" target="_blank" rel="noopener">Hablemos</a>
+    </div>
+  </div>
+</div>
+
+<section id="sobre-mi">
+  <div class="wrap about">
+    <div>
+      <div class="eyebrow">Sobre mí</div>
+      <h2>Datos, auditoría y código en el mismo lugar</h2>
+      <div class="txt" style="margin-top:16px">
+        <p>Trabajo en analítica de datos para auditoría y revisoría fiscal. Mi enfoque es automatizar las tareas repetitivas del día a día: conciliaciones, cruces entre auxiliares y declaraciones, lectura de soportes y preparación de papeles de trabajo.</p>
+        <p>Construyo cada herramienta con una regla clara: los cálculos los hace un motor determinístico y trazable, así cada cifra se puede verificar hasta su origen.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>7+</b><span>herramientas desarrolladas</span></div>
+      <div class="stat"><b>Python</b><span>motores de cruce y validación</span></div>
+      <div class="stat"><b>Power BI</b><span>tableros y publicación web</span></div>
+      <div class="stat"><b>NIA · NIIF</b><span>alineado a normas de auditoría</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="proyectos">
+  <div class="wrap">
+    <div class="eyebrow">Proyectos</div>
+    <h2>Lo que he construido</h2>
+    <p class="lead">Herramientas internas desarrolladas para equipos de auditoría. Por confidencialidad no se muestran datos ni clientes reales.</p>
+
+    <div class="grid">
+      <article class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <h3>Revisión automática de retención en la fuente</h3>
+        <p>Cruza la declaración de retenciones (Formulario 350 DIAN) contra el auxiliar contable, aplica nueve controles previos y entrega las diferencias explicadas.</p>
+        <div class="chips"><span>Python</span><span>Excel</span><span>Impuestos</span></div>
+      </article>
+      <article class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg></div>
+        <h3>Lectura de facturas y vaucheo</h3>
+        <p>Extrae la información de muestras de facturas y soportes y la lleva directamente al papel de trabajo, eliminando la digitación manual.</p>
+        <div class="chips"><span>Python</span><span>Extracción de PDF</span></div>
+      </article>
+      <article class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10M19 21V10M9 21V10M15 21V10"/><path d="M12 3l9 5H3z"/></svg></div>
+        <h3>Conciliación bancaria</h3>
+        <p>Concilia extractos bancarios contra el libro auxiliar, identifica partidas conciliatorias y genera la cédula completa.</p>
+        <div class="chips"><span>Python</span><span>Power Query</span></div>
+      </article>
+      <article class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></div>
+        <h3>Cuentas por pagar</h3>
+        <p>Cruza saldos de proveedores entre fuentes, detecta diferencias y antigüedades y prepara el papel de trabajo de la cuenta.</p>
+        <div class="chips"><span>Python</span><span>Excel</span></div>
+      </article>
+      <article class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+        <h3>Revisión analítica de ingresos</h3>
+        <p>Compara ingresos entre periodos y contra expectativas (NIA 520), resalta variaciones significativas y documenta el análisis.</p>
+        <div class="chips"><span>Python</span><span>Analítica</span></div>
+      </article>
+      <article class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/></svg></div>
+        <h3>Revisión de ReteICA</h3>
+        <p>Valida las retenciones de industria y comercio por municipio frente a la contabilidad y señala inconsistencias de tarifa y base.</p>
+        <div class="chips"><span>Python</span><span>Impuestos</span></div>
+      </article>
+      <article class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></div>
+        <h3>Tableros Power BI en la web</h3>
+        <p>Portal para publicar tableros de Power BI y consultarlos desde una página web, sin instalar nada.</p>
+        <div class="chips"><span>Power BI</span><span>Web</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="que-hago">
+  <div class="wrap">
+    <div class="eyebrow">Qué hago</div>
+    <h2>Cómo puedo ayudar</h2>
+    <div class="skills">
+      <div class="skill"><h3>Automatización de procesos</h3><p>Paso de tareas manuales en Excel a herramientas que se ejecutan con un clic.</p></div>
+      <div class="skill"><h3>Cruces y conciliaciones</h3><p>Motores que comparan dos o más fuentes y explican cada diferencia.</p></div>
+      <div class="skill"><h3>Tableros e indicadores</h3><p>Modelos y tableros en Power BI para seguimiento y toma de decisiones.</p></div>
+      <div class="skill"><h3>Desarrollo en Python</h3><p>Lectura de PDF y Excel, validaciones, reportes y aplicaciones de escritorio.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="contact">
+  <div class="wrap">
+    <div class="eyebrow">Contacto</div>
+    <h2>¿Tienes un proceso que se podría automatizar?</h2>
+    <p class="lead">Escríbeme y lo revisamos.</p>
+    <div class="btns">
+      <a class="btn btn-primary" href="https://wa.me/573006655337" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-ghost" href="mailto:feliperaulrios@gmail.com">Correo</a>
+      <a class="btn btn-ghost" href="https://instagram.com/_f_rios_" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© <span id="y">2026</span> Felipe Ríos · <a href="./">Todos mis enlaces</a></div>
+</footer>
+
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
